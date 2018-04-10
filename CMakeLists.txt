@@ -129,10 +129,12 @@ include_directories(
 )
 
 add_executable(simple_collision_avoidance src/main.cpp
-	                                src/simplecollisionavoidance.cpp)
+	                                src/simplecollisionavoidance.cpp
+					src/flight_control.cpp)
 target_link_libraries(simple_collision_avoidance
   ${catkin_LIBRARIES}
   ${OpenCV_LIBS}
+  ${DJIOSDK_LIBRARIES}
 )
 
 ## Declare a C++ library

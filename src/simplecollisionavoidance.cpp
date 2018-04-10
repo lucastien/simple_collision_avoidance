@@ -174,7 +174,7 @@ int SimpleCollisionAvoidance::startDetection(const cv::Mat &depth_img, const flo
       float vert_dist = distance_at_center * tan(delta_vert);
       float x_center = 0;
       float y_center = 0;
-      float z_center = distance_at_center;
+      //float z_center = distance_at_center;
       _x = x_center + horiz_dist;
       _y = y_center + vert_dist;
       _z = distance_at_center;

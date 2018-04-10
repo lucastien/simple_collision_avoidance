@@ -2,8 +2,8 @@
 #include <ros/ros.h>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-//#include "flight_control.h"
-//#include "dji_sdk/dji_sdk.h"
+#include "flight_control.h"
+#include "dji_sdk/dji_sdk.h"
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/Image.h>
 #include <iostream>
@@ -20,8 +20,6 @@ using namespace std;
 #define WIN_SIZE_H 70
 #define HORIZ_FOV 60.0  //Horizontal field of view of Orbbec depth camera
 #define VERT_FOV  49.5  //Vertical field of view of Orbbec depth camera
-
-
 
 ros::Subscriber depth_img_sub;
 ros::Subscriber rgb_img_sub;

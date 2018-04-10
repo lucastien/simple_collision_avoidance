@@ -21,9 +21,9 @@ class SimpleCollisionAvoidance
 {
 public:
   SimpleCollisionAvoidance(int w, int h, int win_size_w, int win_size_h, float h_f, float v_f, float safety_distance):
-    _width(w), _height(h), _horiz_fov(h_f), _vert_fov(v_f),
-    _win_size_width(win_size_w), _win_size_height(win_size_h),
-    _safety_distance(safety_distance){
+    _width(w), _height(h), _win_size_width(win_size_w), _win_size_height(win_size_h),
+    _safety_distance(safety_distance),
+    _horiz_fov(h_f), _vert_fov(v_f){
   }
   int startDetection(const cv::Mat& depth_img, const float threshold, const cv::Rect& refRect);
   void getTargetCoordinate(float& x, float& y, float& z){x = _x; y = _y; z = _z;}
