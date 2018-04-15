@@ -16,6 +16,7 @@
 
 #define C_PI (double)3.141592653589793
 #define DEG2RAD(DEG) ((DEG) * ((C_PI) / (180.0)))
+#define RAD2DEG(RAD) ((RAD) * (180.0) / (C_PI))
 
 class FlightControler
 {

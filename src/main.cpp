@@ -3,7 +3,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "flight_control.h"
-#include "dji_sdk/dji_sdk.h"
+//#include "dji_sdk/dji_sdk.h"
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/Image.h>
 #include <iostream>
@@ -33,7 +33,8 @@ cv::Rect targetRect;
 cv::Rect refRect;
 const int thresh = 25;
 
-
+//Flight Controller
+FlightControler controller;
 void rgb_image_callback(const sensor_msgs::Image& rgb_img)
 {
   cv_bridge::CvImagePtr cv_ptr;
@@ -83,6 +84,11 @@ void depth_image_callback(const sensor_msgs::Image& depth_img)
     int direction = simpleCollisionAvoidance.startDetection(depth8, thresh, refRect);
     if(direction == STOP){
       targetRect = Rect(Point(0, 0), Size(-1, -1));
+    }else{
+      float x, y, z, yaw;
+      x = y = z = yaw = 0.0f;
+      simpleCollisionAvoidance.getTargetCoordinate(x, y, z, yaw);
+      controller.ctrl_flight(x, y, z, yaw);
     }
     simpleCollisionAvoidance.visualizeDirection(FINAL_RESULT_ONLY);
     targetRect = simpleCollisionAvoidance.getTargetRect();
@@ -96,6 +102,12 @@ int main( int argc, char** argv )
   ros::NodeHandle nh;
   depth_img_sub = nh.subscribe("camera/depth/image_raw", 1, depth_image_callback);
   rgb_img_sub = nh.subscribe("camera/rgb/image_raw", 1, rgb_image_callback);
+  controller.init(boost::make_shared<ros::NodeHandle>(nh));
+  bool takeoff_result = controller.takeoff();
+  if(!takeoff_result){
+    ROS_ERROR("Takeoff failed!");
+    return 0;
+  }
   while (ros::ok())
       ros::spinOnce();
   return(0);

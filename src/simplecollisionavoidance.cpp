@@ -168,8 +168,8 @@ int SimpleCollisionAvoidance::startDetection(const cv::Mat &depth_img, const flo
       horiz_center = vert_center = horiz_target = vert_target = 0;
       point2FOV(center, horiz_center, vert_center);
       point2FOV(target, horiz_target, vert_target);
-      float delta_horiz = horiz_target - horiz_center;
-      float delta_vert = vert_target - vert_center;
+      float delta_horiz = horiz_center - horiz_target;
+      float delta_vert = vert_center - vert_target;
       float horiz_dist = distance_at_center * tan(delta_horiz);
       float vert_dist = distance_at_center * tan(delta_vert);
       float x_center = 0;
@@ -178,6 +178,7 @@ int SimpleCollisionAvoidance::startDetection(const cv::Mat &depth_img, const flo
       _x = x_center + horiz_dist;
       _y = y_center + vert_dist;
       _z = distance_at_center;
+      _yaw = delta_horiz;
 //      char text[100] = {0};
 //      sprintf(text, "center(%.2f, %.2f, %.2f) target(%.2f, %.2f, %.2f)",x_center, y_center, z_center, _x, _y, _z);
 //      _info1 = text;

@@ -1,0 +1,12 @@
+<library path="lib/libsimple_collision_avoidance_nodelet">
+
+    <class name="collision_avoidance_pkg/simple_collision_avoidance"
+           type="collision_avoidance_pkg::SimpleCollisionAvoidanceNodelet"
+           base_class_type="nodelet::Nodelet">
+        <description>
+            Simple collision avoidance algorithm nodelet.
+            It will receive image from Orbbec Astra rgbd ir camera
+        </description>
+    </class>
+
+</library>

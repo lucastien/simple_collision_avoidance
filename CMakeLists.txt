@@ -137,6 +137,13 @@ target_link_libraries(simple_collision_avoidance
   ${DJIOSDK_LIBRARIES}
 )
 
+add_library(simple_collision_avoidance_nodelet
+    src/simple_collision_avoidance_nodelet.cpp
+    src/simplecollisionavoidance.cpp)
+target_link_libraries(simple_collision_avoidance
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBS}
+)
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/simple_collision_avoidance.cpp
@@ -201,7 +208,9 @@ target_link_libraries(simple_collision_avoidance
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
-
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
 #############
 ## Testing ##
 #############

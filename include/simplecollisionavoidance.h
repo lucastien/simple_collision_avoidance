@@ -26,7 +26,7 @@ public:
     _horiz_fov(h_f), _vert_fov(v_f){
   }
   int startDetection(const cv::Mat& depth_img, const float threshold, const cv::Rect& refRect);
-  void getTargetCoordinate(float& x, float& y, float& z){x = _x; y = _y; z = _z;}
+  void getTargetCoordinate(float& x, float& y, float& z, float& yaw){x = _x; y = _y; z = _z; yaw = _yaw;}
   void visualizeDirection(const int visualType = ALL);
   cv::Rect& getTargetRect(){return _targetRect;}
 private:
@@ -34,7 +34,7 @@ private:
   float _safety_distance;
   float _horiz_fov, _vert_fov;
   cv::Rect _targetRect;
-  float _x, _y, _z;
+  float _x, _y, _z, _yaw;
 //  std::string _info1, _info2;
   cv::Mat _threshold_img, _filtered_img, _final_img;
   void point2FOV(const cv::Point& p, float& horiz_ang, float& vert_ang);

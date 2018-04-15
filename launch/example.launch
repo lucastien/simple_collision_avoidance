@@ -1,0 +1,4 @@
+<launch>
+<node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen"/>
+<node pkg="nodelet" type="nodelet" name="nodelet_instance"  args="load collision_avoidance_pkg/simple_collision_avoidance nodelet_manager" output="screen"/>
+</launch>
